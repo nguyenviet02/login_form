@@ -1,11 +1,16 @@
 import Image from 'next/image'
+import Link from 'next/link'
+
 import styles from './index.module.scss'
 
-function IconComponent({ logo }) {
+function IconComponent({ logo, link }) {
+  console.log(link);  
   return (
-    <button className={styles.logo_btn}>
-      <Image src={logo} alt="logo"/>
-    </button>
+    <Link href= {link} >
+      <button className={styles.logo_btn}>
+        <Image src={logo} alt="logo" />
+      </button>
+    </Link>
   )
 }
 

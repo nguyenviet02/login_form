@@ -1,5 +1,5 @@
-import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Button, Divider, Form, Input, Col, Row } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
@@ -19,34 +19,34 @@ import styles from '../styles/Home.module.scss'
 
 export default function Home() {
   const onFinish = (values) => {
-    console.log('Success:', values);
+    alert(`Email: ${values.email}\nPassword: ${values.password}`)
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  const onFinishFailed = (errorValues) => {
+    let errorInfo = ''
+    errorValues.errorFields.forEach(({ name, errors }) => {
+      errorInfo += `${errors}\n`
+    })
+    alert(errorInfo);
   };
   return (
-    <Row className={styles.login_form}>
+    <Row className={styles.loginForm}>
       {/* Form Left */}
-      <Col span={13} className={styles.left}>
+      <Col className={styles.formLeft}>
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.title}>
             <span>Đăng nhập</span>
           </div>
-          <div className={styles.sub_title}>
+          <div className={styles.subTitle}>
             <Image className={styles.logo_name} src={logo_name} alt="logo" />
             <span className={styles.text}> NỀN TẢNG HỌC LẬP TRÌNH HÀNG ĐẦU VIỆT NAM</span>
           </div>
         </div>
         {/* Main form */}
-        <div className={styles.main}>
+        <div className={styles.mainForm}>
           <Form
-            name="basic"
             wrapperCol={{
               span: 24,
-            }}
-            initialValues={{
-              remember: true,
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -58,7 +58,8 @@ export default function Home() {
               className={styles.form_item}
               rules={[
                 {
-                  message: 'Please input your email!',
+                  required: true,
+                  message: 'Bạn chưa nhập email!',
                 },
               ]}
             >
@@ -72,33 +73,25 @@ export default function Home() {
 
             <Form.Item
               name="password"
-              label="Mật khẩu"
+              label="Password"
               className={styles.form_item}
               rules={[
                 {
-                  message: 'Please input your password!',
+                  required: true,
+                  message: 'Bạn chưa nhập mật khẩu!',
                 },
               ]}
             >
               <Input.Password
                 prefix={<LockOutlined />}
-                bordered={false}
                 placeholder="Nhập mật khẩu"
                 id='password'
                 className={styles.form_input} />
             </Form.Item>
 
-            <Form.Item
-              name="remember"
-              className={styles.form_forgot_pass}
-              valuePropName="checked"
-
-              wrapperCol={{
-                span: 24,
-              }}
-            >
+            <div className={styles.form_forgot_pass}>
               <a href="#">Quên mật khẩu</a>
-            </Form.Item>
+            </div>
 
             <Form.Item
               className={styles.form_btn}
@@ -106,7 +99,7 @@ export default function Home() {
                 span: 24,
               }}
             >
-              <Button bordered={false} id="submit_btn" type="primary" htmlType="submit">
+              <Button id="submit_btn" type="primary" htmlType="submit">
                 Bắt đầu ngay
               </Button>
             </Form.Item>
@@ -118,15 +111,15 @@ export default function Home() {
         </div>
         {/* Icon List */}
         <div className={styles.icon_list}>
-          <IconComponent logo={icon_google} />
-          <IconComponent logo={icon_facebook} />
-          <IconComponent logo={icon_github} />
-          <IconComponent logo={icon_linkedin} />
-          <IconComponent logo={icon_msteam} />
+          <IconComponent logo={icon_google} link="https://www.google.com/" />
+          <IconComponent logo={icon_linkedin} link="https://www.linkedin.com/" />
+          <IconComponent logo={icon_msteam} link="https://www.microsoft.com/vi-vn/microsoft-teams" />
+          <IconComponent logo={icon_facebook} link="https://www.facebook.com/" />
+          <IconComponent logo={icon_github} link="https://github.com" />
         </div>
       </Col>
       {/* Form Right */}
-      <Col span={11} className={styles.right}>
+      <Col className={styles.right}>
         <div className={styles.logo_image}>
           <Image src={logo_image_main} alt="logo" />
         </div>

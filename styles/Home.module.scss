@@ -1,23 +1,29 @@
-.login_form {
-  position: relative;
-  width: 1226px;
-  height: 776px;
+$widthFormFull: 1226px;
+$heightFormFull: 776px;
+$widthFormLeft: 634px;
+$widthFormRight: 590px; // Design 592px
+
+.loginForm {
+  width: $widthFormFull;
+  height: $heightFormFull;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 
   color: #fff;
-  background: rgba(0, 0, 0, 0.17);
   box-shadow: 0px 17px 36px rgba(255, 255, 255, 0.04);
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.17), rgba(0, 0, 0, 0.17));
+
   border: 1px solid rgba(0, 209, 255, 0.41);
   border-radius: 20px;
 }
 
-.left {
+.formLeft {
+  width: $widthFormLeft;
   height: 100%;
-  padding: 63px 97px;
+  padding: 50px 94px 133px 94px;
 
   & .header {
     width: 100%;
@@ -29,49 +35,63 @@
     flex-direction: column;
 
     & .title {
-      font-family: "Inter", sans-serif;
+      width: 211px;
+      font-family: "Inter";
       font-style: normal;
       font-weight: 700;
       font-size: 40px;
-      line-height: 20px;
 
-      margin-bottom: 33px;
+      margin-bottom: 10px;
     }
 
-    & .sub_title {
+    & .subTitle {
       height: 20px;
 
       & .logo_name {
-        height: 15.053253173828125px;
-        width: 107.18034362792969px;
+        height: 15px;
+        width: 100px;
       }
 
       & .text {
-        font-family: "Inter", sans-serif;
+        font-family: "Inter";
         font-style: normal;
         font-size: 14px;
-        font-weight: 500;
-        line-height: 19px;
+        font-weight: 400;
       }
     }
   }
 
-  & .main {
+  & .mainForm {
     width: 100%;
 
     & .form_item {
       width: 100%;
       height: 88px;
+
+      &:nth-child(1) {
+        margin-bottom: 33px;
+      }
+
+      &:nth-child(2) {
+        margin-bottom: 8px;
+      }
     }
 
     & .form_forgot_pass {
       width: 100%;
       color: rgba(213, 66, 83, 1);
       text-align: right;
+      cursor: pointer;
+      margin-bottom: 32px;
     }
 
     & .form_btn {
       width: 100%;
+      cursor: pointer;
+      margin-bottom: 36px;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
 
       & .ant-btn {
         width: 100%;
@@ -88,12 +108,24 @@
         & .ant-form-item-label {
           text-align: left;
           color: #fff;
-          margin-bottom: 5px;
+          margin-bottom: 12px;
 
           & label {
+            height: 19px;
             color: #fff;
+            font-size: 16px;
+            font-weight: 500;
           }
         }
+      }
+
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+
+      .ant-form-item-label
+        > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+        display: none;
       }
 
       .ant-input-affix-wrapper {
@@ -133,6 +165,8 @@
         border: none;
         border-radius: 8px;
 
+        margin-bottom: 16px;
+
         & span {
           color: #f4f4f4;
           font-family: "Inter";
@@ -151,12 +185,17 @@
   }
 
   :global {
+    .ant-divider-horizontal.ant-divider-with-text {
+      margin: 0 0 0 0;
+      margin-bottom: 32px;
+    }
     .ant-divider-horizontal.ant-divider-with-text::before,
     .ant-divider-horizontal.ant-divider-with-text::after {
       border-top: 0.5px solid rgba(119, 118, 130, 0.8);
     }
 
     .ant-divider {
+      margin-bottom: 32px;
       & .ant-divider-inner-text {
         font-family: "Inter";
         font-style: normal;
@@ -166,10 +205,17 @@
         color: #777682;
       }
     }
+
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+      background-color: #000;
+      border-color: #ff4d4f;
+    }
   }
 }
 
 .right {
+  width: $widthFormRight;
   height: 100%;
   padding: 76px 87.06px 270px 100.37px;
   border: 1px solid rgba(0, 209, 255, 0.41);
